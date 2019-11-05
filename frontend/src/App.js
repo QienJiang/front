@@ -69,7 +69,7 @@ class App extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/" onClick={this.handleLogout}>
-                Perfect loan
+                Pigeon Twitter
               </Link>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -92,7 +92,7 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         <div style={{ float: "left" }}>
-          {this.state.isAuthenticated && this.state.role == "manager" ? (
+          {this.state.isAuthenticated == true ? (
             <ManagerMenu
               childProps={childProps}
               user={this.state.user}

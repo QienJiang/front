@@ -11,6 +11,7 @@ import Load from "./containers/Load";
 import RequestLoan from "./containers/requestLoan";
 import Manager from "./containers/Manager";
 import StatusChart from "./containers/Chart";
+import Verify from "./containers/Verify";
 
 export default ({ childProps }) => (
   <Switch>
@@ -49,6 +50,12 @@ export default ({ childProps }) => (
       path="/chart"
       exact
       component={StatusChart}
+      props={childProps}
+    />
+    <UnauthenticatedRoute
+      path="/verify"
+      exact
+      component={Verify}
       props={childProps}
     />
     {/* Finally, catch all unmatched routes */}

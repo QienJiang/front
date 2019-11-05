@@ -5,7 +5,7 @@ import LoaderButton from "../components/LoaderButton";
 import "./Signup.css";
 import axios from "axios";
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
@@ -34,7 +34,7 @@ class Login extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { email, password, username, role } = this.state;
+    const { email, password, username } = this.state;
     let data = JSON.stringify({
       email: email,
       password: password,
@@ -45,8 +45,10 @@ class Login extends Component {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {
-        this.props.history.push("/login");
-        alert("congratulation, you have been registered");
+        this.props.history.push("/verify");
+        alert(
+          "congratulation, you have been registered, Please verify your accout"
+        );
       })
       .catch(error => {
         console.log(error);
@@ -100,4 +102,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;

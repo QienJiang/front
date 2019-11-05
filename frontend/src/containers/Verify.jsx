@@ -1,82 +1,77 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
-
-import "./Login.css";
 import axios from "axios";
 
-class Login extends Component {
+class Verify extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isLoading: false,
-      password: "",
-      username: ""
+      email: "",
+      key: ""
     };
   }
-  async componentDidUpdate(prevProps, prevState) {
-    console.log(prevState.isLoading);
-    console.log(prevProps.userHasAuthenticated);
-  }
-  validateForm() {
-    return this.state.username.length > 0 && this.state.password.length > 0;
-  }
-
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
-
+  validateForm() {
+    return this.state.email.length > 0 && this.state.key.length > 0;
+  }
   handleSubmit = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { password, username } = this.state;
+    const { email, key } = this.state;
     let data = JSON.stringify({
-      password: password,
-      username: username
+      email: email,
+      key: key
     });
 
     axios
-      .post("http://130.245.169.40/login", data, {
+      .post("http://130.245.169.40/verify", data, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {
-        this.props.userHasAuthenticated(true);
-        //console.log("user", result.session.username);
-        alert("login");
-        this.props.history.push("/load");
+        console.log("status:", result.status);
+        this.setState({ isLoading: false });
+        if (result.status == "error") {
+          alert("Failed Verify");
+        } else if (result.status == 200 || result.status == "OK") {
+          alert("login");
+          this.props.history.push("/login");
+        }
       })
       .catch(error => {
         console.log(error);
         console.log("fail");
-        alert("invalid user name or password");
+        alert("invalid email or key");
         this.setState({ isLoading: false });
       });
 
     await this.props.saveEmail(this.state.email);
   };
-
   render() {
     return (
-      <div className="Login">
+      <div className="Verify">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="username" bsSize="large">
-            <ControlLabel>Name</ControlLabel>
+          <FormGroup controlId="email" bsSize="large">
+            <ControlLabel>Email</ControlLabel>
             <FormControl
               autoFocus
               type="text"
-              value={this.state.username}
+              value={this.state.email}
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
+          <FormGroup controlId="key" bsSize="large">
+            <ControlLabel>Key</ControlLabel>
             <FormControl
-              value={this.state.password}
+              value={this.state.key}
               onChange={this.handleChange}
-              type="password"
+              type="text"
             />
           </FormGroup>
           <LoaderButton
@@ -85,7 +80,7 @@ class Login extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Login"
+            text="Verify"
             loadingText="Logging in…"
           />
         </form>
@@ -94,4 +89,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Verify;

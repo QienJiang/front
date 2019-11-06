@@ -34,7 +34,7 @@ class Follow extends Component {
       })
       .then((result) => {
         // alert(result.item);
-        alert("get user");
+        alert("follow user");
         console.log("xxxxx", result.data.user);
         this.setState({ isLoading: false });
         this.setState({ data: result.data.user });
@@ -65,8 +65,8 @@ class Follow extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Get User info "
-            loadingText="Getting the user info…"
+            text="Follow user"
+            loadingText="Following the user ..."
           />
         </form>
         <div>

@@ -83,7 +83,7 @@ export default ({ childProps }) => (
     <AuthenticatedRoute
       path="/deletetwitter"
       exact
-      component={GetUser}
+      component={DeleteTwitter}
       props={childProps}
     />
     <UnauthenticatedRoute

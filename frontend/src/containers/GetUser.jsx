@@ -69,7 +69,7 @@ class GetUser extends Component {
           />
         </form>
         <div>
-          {this.state.data != [] > 0 ? (
+          {this.state.data != [] ? (
             <ul>
               <li>email: {data["email"]}</li>
               <li>followers: {data["followers"]}</li>

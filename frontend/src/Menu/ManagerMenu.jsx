@@ -25,11 +25,20 @@ class ManagerMenu extends Component {
           <ListItem button onClick={() => this.props.history.push("/chart")}>
             <ListItemText primary="Status Chart" />
           </ListItem>
-          <ListItem button onClick={() => this.props.history.push("/gettwitter")}>
+          <ListItem
+            button
+            onClick={() => this.props.history.push("/gettwitter")}
+          >
             <ListItemText primary="Get Twitter" />
           </ListItem>
-          <ListItem button onClick={() => this.props.history.push("/posttwitter")}>
+          <ListItem
+            button
+            onClick={() => this.props.history.push("/posttwitter")}
+          >
             <ListItemText primary="Post Twitter" />
+          </ListItem>
+          <ListItem button onClick={() => this.props.history.push("/getuser")}>
+            <ListItemText primary="Get User" />
           </ListItem>
         </List>
       </div>

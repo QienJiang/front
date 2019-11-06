@@ -67,7 +67,7 @@ export default ({ childProps }) => (
       component={PostTwitter}
       props={childProps}
     />
-    <AuthenticatedRoute
+    <UnauthenticatedRoute
       path="/PostSearch"
       exact
       component={PostSearch}

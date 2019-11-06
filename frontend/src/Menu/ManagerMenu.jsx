@@ -37,12 +37,6 @@ class ManagerMenu extends Component {
           >
             <ListItemText primary="Post Twitter" />
           </ListItem>
-          <ListItem
-            button
-            onClick={() => this.props.history.push("/PostSearch")}
-          >
-            <ListItemText primary="Search" />
-          </ListItem>
         </List>
       </div>
     );

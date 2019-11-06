@@ -79,18 +79,21 @@ class App extends Component {
               {this.state.isAuthenticated ? (
                 <NavItem onClick={this.handleLogout}>Logout</NavItem>
               ) : (
-                  <Fragment>
-                    <LinkContainer to="/signup">
-                      <NavItem>Signup</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/login">
-                      <NavItem>Login</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/getuser">
-                      <NavItem>Get User</NavItem>
-                    </LinkContainer>
-                  </Fragment>
-                )}
+                <Fragment>
+                  <LinkContainer to="/signup">
+                    <NavItem>Signup</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/login">
+                    <NavItem>Login</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/PostSearch">
+                    <NavItem>Search</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/getuser">
+                    <NavItem>Get User</NavItem>
+                  </LinkContainer>
+                </Fragment>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -102,8 +105,8 @@ class App extends Component {
               history={this.props.history}
             />
           ) : (
-              <div />
-            )}
+            <div />
+          )}
         </div>
         <div style={{ float: "left" }}>
           {this.state.isAuthenticated && this.state.role == "user" ? (
@@ -113,8 +116,8 @@ class App extends Component {
               history={this.props.history}
             />
           ) : (
-              <div />
-            )}
+            <div />
+          )}
         </div>
         <Routes
           style={{ float: "right" }}

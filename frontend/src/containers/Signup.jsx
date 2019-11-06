@@ -45,7 +45,7 @@ class Signup extends Component {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {
-        this.props.history.push("/verify");
+        this.props.history.push("/Verify");
         alert(
           "congratulation, you have been registered, Please verify your accout"
         );

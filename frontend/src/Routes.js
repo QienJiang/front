@@ -12,6 +12,8 @@ import RequestLoan from "./containers/requestLoan";
 import Manager from "./containers/Manager";
 import StatusChart from "./containers/Chart";
 import Verify from "./containers/Verify";
+import GetTwitter from "./containers/GetTwitter";
+import PostTwitter from "./containers/PostTwitter";
 
 export default ({ childProps }) => (
   <Switch>
@@ -52,12 +54,25 @@ export default ({ childProps }) => (
       component={StatusChart}
       props={childProps}
     />
+    <AuthenticatedRoute
+      path="/gettwitter"
+      exact
+      component={GetTwitter}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/posttwitter"
+      exact
+      component={PostTwitter}
+      props={childProps}
+    />
     <UnauthenticatedRoute
       path="/verify"
       exact
       component={Verify}
       props={childProps}
     />
+    
     {/* Finally, catch all unmatched routes */}
     <Route component={NotFound} />
   </Switch>

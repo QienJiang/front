@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
-
 import "./Login.css";
 import axios from "axios";
 
@@ -11,14 +10,15 @@ class Login extends Component {
 
     this.state = {
       isLoading: false,
+      email: "",
       password: "",
       username: ""
     };
   }
-  async componentDidUpdate(prevProps, prevState) {
-    console.log(prevState.isLoading);
-    console.log(prevProps.userHasAuthenticated);
-  }
+  // async componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevState.isLoading);
+  //   console.log(prevProps.userHasAuthenticated);
+  // }
   validateForm() {
     return this.state.username.length > 0 && this.state.password.length > 0;
   }
@@ -32,21 +32,30 @@ class Login extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { password, username } = this.state;
+    const { email, password, username } = this.state;
     let data = JSON.stringify({
+      email: email,
       password: password,
       username: username
     });
-
+    axios.defaults.withCredentials = true;
     axios
       .post("http://130.245.169.40/login", data, {
-        headers: { "Content-Type": "application/json;charset=UTF-8" }
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+        // withCredentials: true
       })
       .then(result => {
         this.props.userHasAuthenticated(true);
         //console.log("user", result.session.username);
-        alert("login");
-        this.props.history.push("/load");
+
+        if (result.status == 200) {
+          alert("login");
+          this.props.history.push("/load");
+        } else {
+          alert("error");
+        }
       })
       .catch(error => {
         console.log(error);

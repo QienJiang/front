@@ -43,6 +43,9 @@ class ManagerMenu extends Component {
           >
             <ListItemText primary="Delete Twitter" />
           </ListItem>
+          <ListItem button onClick={() => this.props.history.push("/follow")}>
+            <ListItemText primary="Follow a user" />
+          </ListItem>
         </List>
       </div>
     );

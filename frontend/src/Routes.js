@@ -18,6 +18,8 @@ import GetUser from "./containers/GetUser";
 import PostSearch from "./containers/PostSearch";
 import DeleteTwitter from "./containers/DeleteTwitter";
 import GetUserPost from "./containers/GetUserPost";
+import Follow from "./containers/Follow";
+
 export default ({ childProps }) => (
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
@@ -91,6 +93,12 @@ export default ({ childProps }) => (
       path="/deletetwitter"
       exact
       component={DeleteTwitter}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/follow"
+      exact
+      component={Follow}
       props={childProps}
     />
     <UnauthenticatedRoute

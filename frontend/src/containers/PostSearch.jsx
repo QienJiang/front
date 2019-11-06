@@ -58,7 +58,16 @@ class PostSearch extends Component {
 
   displayResult() {
     const { data } = this.state;
-    const listItems = data.map(number => <li>{number}</li>);
+    const listItems = data.map(number => (
+      <ul>
+        {" "}
+        <li>id: {number["id"]}</li>
+        <li>username: {number["username"]}</li>
+        <li>retweeted: {number["retweeted"]}</li>
+        <li>content: {number["content"]}</li>
+        <li>timestamp: {number["timestamp"]}</li>
+      </ul>
+    ));
     return <ul>{listItems}</ul>;
   }
 

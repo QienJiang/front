@@ -12,7 +12,7 @@ class GetTwitter extends Component {
       content: "",
       childType: "",
       isLoading: false,
-      data: ""
+      data: []
     };
   }
 
@@ -39,18 +39,18 @@ class GetTwitter extends Component {
       .then(result => {
         // alert(result.item);
         alert("get item");
-        console.log(result);
+        console.log("xxxxx", result.data.item);
         this.setState({ isLoading: false });
         this.setState({ data: result.data.item });
       })
       .catch(error => {
         console.log(error);
         console.log("fail");
-
         this.setState({ isLoading: false });
       });
   };
   render() {
+    const { data } = this.state;
     return (
       <div className="Login">
         <form onSubmit={this.handleGetTwitte}>
@@ -73,8 +73,18 @@ class GetTwitter extends Component {
             loadingText="Getting the twitter…"
           />
         </form>
-        <div style={{ float: "right" }}>
-          {this.state.data != "" ? <p>Id: {this.state.data}</p> : <div />}
+        <div>
+          {this.state.data["id"] && this.state.data["id"].length > 0 ? (
+            <ul>
+              <li>id: {data["id"]}</li>
+              <li>username: {data["username"]}</li>
+              <li>retweeted: {data["retweeted"]}</li>
+              <li>content: {data["content"]}</li>
+              <li>timestamp: {data["timestamp"]}</li>
+            </ul>
+          ) : (
+            <div />
+          )}
         </div>
       </div>
     );

@@ -69,8 +69,8 @@ class DeleteTwitter extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Get twitter "
-            loadingText="Getting the twitter…"
+            text="Delete twitter "
+            loadingText="Deleting the twitter…"
           />
         </form>
         <div>

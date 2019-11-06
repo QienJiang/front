@@ -18,28 +18,32 @@ class Follow extends Component {
   validateForm() {
     return this.state.username.length > 0;
   }
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
-  handleGetTwitte = async (event) => {
+  handleGetTwitte = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { username } = this.state;
+    const { username, follow } = this.state;
+
+    let data = JSON.stringify({
+      username: username,
+      follow: follow
+    });
     axios
-      .get("http://130.245.169.40/user/" + username, {
+      .post("http://130.245.169.40/follow", data, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
-      .then((result) => {
+      .then(result => {
         // alert(result.item);
         alert("follow user");
-        console.log("xxxxx", result.data.user);
+        console.log("xxxxx", result);
         this.setState({ isLoading: false });
-        this.setState({ data: result.data.user });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         console.log("fail");
         this.setState({ isLoading: false });
@@ -69,17 +73,6 @@ class Follow extends Component {
             loadingText="Following the user ..."
           />
         </form>
-        <div>
-          {this.state.data != [] ? (
-            <ul>
-              <li>email: {data["email"]}</li>
-              <li>followers: {data["followers"]}</li>
-              <li>following: {data["following"]}</li>
-            </ul>
-          ) : (
-            <div />
-          )}
-        </div>
       </div>
     );
   }

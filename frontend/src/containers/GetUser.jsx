@@ -9,9 +9,6 @@ class GetUser extends Component {
     this.state = {
       loadList: [],
       username: "",
-      email: "",
-      followers: "",
-      following: "",
       isLoading: false,
       data: []
     };
@@ -37,9 +34,9 @@ class GetUser extends Component {
       .then((result) => {
         // alert(result.item);
         alert("get user");
-        console.log("xxxxx", result.data.item);
+        console.log("xxxxx", result.data.user);
         this.setState({ isLoading: false });
-        this.setState({ data: result.data.item });
+        this.setState({ data: result.data.user });
       })
       .catch((error) => {
         console.log(error);
@@ -72,13 +69,11 @@ class GetUser extends Component {
           />
         </form>
         <div>
-          {this.state.data["id"] && this.state.data["id"].length > 0 ? (
+          {this.state.data["email"] && this.state.data["email"].length > 0 ? (
             <ul>
-              <li>id: {data["id"]}</li>
-              <li>username: {data["username"]}</li>
-              <li>retweeted: {data["retweeted"]}</li>
-              <li>content: {data["content"]}</li>
-              <li>timestamp: {data["timestamp"]}</li>
+              <li>email: {data["email"]}</li>
+              <li>followers: {data["followers"]}</li>
+              <li>following: {data["following"]}</li>
             </ul>
           ) : (
             <div />

@@ -72,7 +72,7 @@ export default ({ childProps }) => (
       component={Verify}
       props={childProps}
     />
-    
+
     {/* Finally, catch all unmatched routes */}
     <Route component={NotFound} />
   </Switch>

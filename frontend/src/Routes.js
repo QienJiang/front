@@ -15,7 +15,7 @@ import Verify from "./containers/Verify";
 import GetTwitter from "./containers/GetTwitter";
 import PostTwitter from "./containers/PostTwitter";
 import GetUser from "./containers/GetUser";
-
+import PostSearch from "./containers/PostSearch";
 export default ({ childProps }) => (
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
@@ -65,6 +65,12 @@ export default ({ childProps }) => (
       path="/posttwitter"
       exact
       component={PostTwitter}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/PostSearch"
+      exact
+      component={PostSearch}
       props={childProps}
     />
     <AuthenticatedRoute

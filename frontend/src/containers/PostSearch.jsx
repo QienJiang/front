@@ -9,20 +9,18 @@ class PostSearch extends Component {
     super(props);
     this.state = {
       loadList: [],
-      twitterId: "",
-      content: "",
-      childType: "",
+      timestamp: "",
+      limit: "",
+      q: "",
+      username: "",
+      following: "",
       isLoading: false,
-      data: ""
+      data: []
     };
   }
 
-  validateForm() {
-    return this.state.twitterId.length > 0;
-  }
-  validatecontent() {
-    return this.state.content.length > 0;
-  }
+  validateForm() {}
+  validatecontent() {}
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -32,19 +30,22 @@ class PostSearch extends Component {
   handlePostTwitte = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { content, childType } = this.state;
+    const { timestamp, limit, q, username, following } = this.state;
     let data = JSON.stringify({
-      content: content,
-      childType: childType
+      timestamp: timestamp,
+      limit: limit,
+      q: q,
+      username: username,
+      following: following
     });
 
     axios
-      .post("http://130.245.169.40/additem", data, {
+      .post("http://130.245.169.40/search", data, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {
-        console.log(result.data);
-        this.setState({ data: result.data.id });
+        console.log("results", result.data.items);
+        this.setState({ data: result.data.items });
         this.setState({ isLoading: false });
       })
       .catch(error => {
@@ -54,42 +55,73 @@ class PostSearch extends Component {
         this.setState({ isLoading: false });
       });
   };
+  displayResult()=>{
+      
+  }
 
   render() {
+    const { data } = this.state;
+    const listItems = data.map(number => <li>{number}</li>);
     return (
       <div className="Login">
         <form onSubmit={this.handlePostTwitte}>
-          <FormGroup controlId="content">
-            <ControlLabel>Post Your Twitte</ControlLabel>
+          <FormGroup controlId="timestamp">
+            <ControlLabel>Timestamp</ControlLabel>
             <FormControl
               as="textarea"
               rows="10"
               autoFocus
-              value={this.state.content}
+              value={this.state.timestamp}
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="childType">
-            <ControlLabel>childType</ControlLabel>
+          <FormGroup controlId="limit">
+            <ControlLabel>limit</ControlLabel>
             <FormControl
               autoFocus
               type="text"
-              value={this.state.childType}
+              value={this.state.limit}
+              onChange={this.handleChange}
+            />{" "}
+          </FormGroup>
+          <FormGroup controlId="q">
+            <ControlLabel>q</ControlLabel>
+            <FormControl
+              autoFocus
+              type="text"
+              value={this.state.q}
+              onChange={this.handleChange}
+            />{" "}
+          </FormGroup>
+          <FormGroup controlId="username">
+            <ControlLabel>username</ControlLabel>
+            <FormControl
+              autoFocus
+              type="text"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />{" "}
+          </FormGroup>
+          <FormGroup controlId="following">
+            <ControlLabel>following</ControlLabel>
+            <FormControl
+              autoFocus
+              type="text"
+              value={this.state.following}
               onChange={this.handleChange}
             />{" "}
           </FormGroup>
           <LoaderButton
             block
             bsSize="large"
-            disabled={!this.validatecontent()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Twitter"
-            loadingText="posting the twitte…"
+            text="Search"
+            loadingText="Searching ..."
           />
         </form>
         <div style={{ float: "right" }}>
-          {this.state.data != "" ? <p>Id: {this.state.data}</p> : <div />}
+          <div>{this.state.data.length > 0 ? displayResult() : <div />}</div>
         </div>
       </div>
     );

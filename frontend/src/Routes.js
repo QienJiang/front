@@ -73,7 +73,7 @@ export default ({ childProps }) => (
       component={PostSearch}
       props={childProps}
     />
-    <AuthenticatedRoute
+    <UnauthenticatedRoute
       path="/getuser"
       exact
       component={GetUser}

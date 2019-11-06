@@ -69,7 +69,7 @@ class GetUser extends Component {
           />
         </form>
         <div>
-          {this.state.data["email"] && this.state.data["email"].length > 0 ? (
+          {this.state.data["email"] && this.state.data["email "].length > 0 ? (
             <ul>
               <li>email: {data["email"]}</li>
               <li>followers: {data["followers"]}</li>

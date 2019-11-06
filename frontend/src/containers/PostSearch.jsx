@@ -55,13 +55,15 @@ class PostSearch extends Component {
         this.setState({ isLoading: false });
       });
   };
-  displayResult()=>{
-      
+
+  displayResult() {
+    const { data } = this.state;
+    const listItems = data.map(number => <li>{number}</li>);
+    return <ul>{listItems}</ul>;
   }
 
   render() {
     const { data } = this.state;
-    const listItems = data.map(number => <li>{number}</li>);
     return (
       <div className="Login">
         <form onSubmit={this.handlePostTwitte}>
@@ -121,7 +123,9 @@ class PostSearch extends Component {
           />
         </form>
         <div style={{ float: "right" }}>
-          <div>{this.state.data.length > 0 ? displayResult() : <div />}</div>
+          <div>
+            {this.state.data.length > 0 ? this.displayResult() : <div />}
+          </div>
         </div>
       </div>
     );

@@ -8,19 +8,17 @@ class GetUser extends Component {
     super(props);
     this.state = {
       loadList: [],
-      itemID: "",
-      content: "",
-      childType: "",
+      username: "",
+      email: "",
+      followers: "",
+      following: "",
       isLoading: false,
       data: []
     };
   }
 
   validateForm() {
-    return this.state.itemID.length > 0;
-  }
-  validatecontent() {
-    return this.state.content.length > 0;
+    return this.state.username.length > 0;
   }
   handleChange = (event) => {
     this.setState({
@@ -31,14 +29,14 @@ class GetUser extends Component {
   handleGetTwitte = async (event) => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { itemID } = this.state;
+    const { username } = this.state;
     axios
-      .get("http://130.245.169.40/item/" + itemID, {
+      .get("http://130.245.169.40/user/" + username, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then((result) => {
         // alert(result.item);
-        alert("get item");
+        alert("get user");
         console.log("xxxxx", result.data.item);
         this.setState({ isLoading: false });
         this.setState({ data: result.data.item });
@@ -54,12 +52,12 @@ class GetUser extends Component {
     return (
       <div className="Login">
         <form onSubmit={this.handleGetTwitte}>
-          <FormGroup controlId="itemID" bsSize="large">
-            <ControlLabel>Get your twitter</ControlLabel>
+          <FormGroup controlId="username" bsSize="large">
+            <ControlLabel>username</ControlLabel>
             <FormControl
               autoFocus
               type="text"
-              value={this.state.itemID}
+              value={this.state.username}
               onChange={this.handleChange}
             />
           </FormGroup>
@@ -69,7 +67,7 @@ class GetUser extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Get User "
+            text="Get User info "
             loadingText="Getting the user info…"
           />
         </form>

@@ -69,8 +69,8 @@ class GetUser extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Get twitter "
-            loadingText="Getting the twitter…"
+            text="Get User "
+            loadingText="Getting the user info…"
           />
         </form>
         <div>

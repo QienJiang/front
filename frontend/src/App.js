@@ -92,6 +92,12 @@ class App extends Component {
                   <LinkContainer to="/GetUserPost">
                     <NavItem>Get User Post</NavItem>
                   </LinkContainer>
+                  <LinkContainer to="/GetUserFollowers">
+                    <NavItem>Get User Followers</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/GetUserFollowing">
+                    <NavItem>Get User Following</NavItem>
+                  </LinkContainer>
                   <LinkContainer to="/getuser">
                     <NavItem>Get User</NavItem>
                   </LinkContainer>

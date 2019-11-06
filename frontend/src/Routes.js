@@ -18,6 +18,9 @@ import GetUser from "./containers/GetUser";
 import PostSearch from "./containers/PostSearch";
 import DeleteTwitter from "./containers/DeleteTwitter";
 import GetUserPost from "./containers/GetUserPost";
+import GetUserFollowers from "./containers/GetUserFollowers";
+import GetUserFollowing from "./containers/GetUserFollowing";
+
 export default ({ childProps }) => (
   <Switch>
     <AppliedRoute path="/" exact component={Home} props={childProps} />
@@ -79,6 +82,18 @@ export default ({ childProps }) => (
       path="/GetUserPost"
       exact
       component={GetUserPost}
+      props={childProps}
+    />
+    <UnauthenticatedRoute
+      path="/GetUserFollowers"
+      exact
+      component={GetUserFollowers}
+      props={childProps}
+    />
+    <UnauthenticatedRoute
+      path="/GetUserFollowing"
+      exact
+      component={GetUserFollowing}
       props={childProps}
     />
     <UnauthenticatedRoute

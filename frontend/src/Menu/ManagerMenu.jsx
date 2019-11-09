@@ -46,6 +46,12 @@ class ManagerMenu extends Component {
           <ListItem button onClick={() => this.props.history.push("/follow")}>
             <ListItemText primary="Follow a user" />
           </ListItem>
+          <ListItem
+            button
+            onClick={() => this.props.history.push("/PostSearchA")}
+          >
+            <ListItemText primary="Search" />
+          </ListItem>
         </List>
       </div>
     );

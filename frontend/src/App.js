@@ -6,7 +6,7 @@ import { Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import UserMenu from "./Menu/userMenu";
 import ManagerMenu from "./Menu/ManagerMenu";
-
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
@@ -33,8 +33,28 @@ class App extends Component {
   }
 
   handleLogout = async event => {
-    this.userHasAuthenticated(false);
-    this.props.history.push("/login");
+    event.preventDefault();
+    this.setState({ isLoading: true });
+    const { timestamp, limit, q, username, following } = this.state;
+    let data = JSON.stringify({});
+
+    axios.defaults.withCredentials = true;
+    axios
+      .post("http://130.245.169.40/logout", data, {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      })
+      .then(result => {
+        this.userHasAuthenticated(false);
+        this.props.history.push("/login");
+      })
+      .catch(error => {
+        console.log(error);
+        console.log("fail");
+        alert("invalid user name or password");
+        this.setState({ isLoading: false });
+      });
   };
 
   userHasAuthenticated = authenticated => {

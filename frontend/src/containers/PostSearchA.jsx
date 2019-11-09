@@ -10,7 +10,7 @@ import LoaderButton from "../components/LoaderButton";
 import axios from "axios";
 import "./Login.css";
 
-class PostSearch extends Component {
+class PostSearchA extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -158,4 +158,4 @@ class PostSearch extends Component {
   }
 }
 
-export default PostSearch;
+export default PostSearchA;

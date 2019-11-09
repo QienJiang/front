@@ -16,6 +16,7 @@ import GetTwitter from "./containers/GetTwitter";
 import PostTwitter from "./containers/PostTwitter";
 import GetUser from "./containers/GetUser";
 import PostSearch from "./containers/PostSearch";
+import PostSearchA from "./containers/PostSearch";
 import DeleteTwitter from "./containers/DeleteTwitter";
 import GetUserPost from "./containers/GetUserPost";
 import Follow from "./containers/Follow";
@@ -71,6 +72,12 @@ export default ({ childProps }) => (
       path="/posttwitter"
       exact
       component={PostTwitter}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/PostSearchA"
+      exact
+      component={PostSearchA}
       props={childProps}
     />
     <UnauthenticatedRoute

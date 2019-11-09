@@ -52,7 +52,7 @@ class Login extends Component {
 
         if (result.status == 200) {
           alert("login");
-          this.props.history.push("/load");
+          this.props.history.push("/gettwitter");
         } else {
           alert("error");
         }

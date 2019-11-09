@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import {
+  FormGroup,
+  FormControl,
+  ControlLabel,
+  Checkbox,
+  Button
+} from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import axios from "axios";
 import "./Login.css";
@@ -13,7 +19,7 @@ class PostSearch extends Component {
       limit: "",
       q: "",
       username: "",
-      following: "",
+      following: true,
       isLoading: false,
       data: []
     };
@@ -22,11 +28,20 @@ class PostSearch extends Component {
   validateForm() {}
   validatecontent() {}
   handleChange = event => {
+    console.log("value", event.target.value);
     this.setState({
       [event.target.id]: event.target.value
     });
   };
+  handleFollowing = event => {
+    console.log("value", this.state.following);
 
+    this.setState({
+      following: event.target.checked
+    });
+
+    console.log("value change to", this.state.following);
+  };
   handlePostTwitte = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
@@ -73,7 +88,8 @@ class PostSearch extends Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { following } = this.state;
+    console.log("render", following);
     return (
       <div className="Login">
         <form onSubmit={this.handlePostTwitte}>
@@ -114,15 +130,15 @@ class PostSearch extends Component {
               onChange={this.handleChange}
             />{" "}
           </FormGroup>
-          <FormGroup controlId="following">
-            <ControlLabel>following</ControlLabel>
-            <FormControl
-              autoFocus
-              type="text"
-              value={this.state.following}
-              onChange={this.handleChange}
-            />{" "}
-          </FormGroup>
+          <label>
+            following
+            <Checkbox
+              name="following"
+              checked={this.state.following}
+              onChange={this.handleFollowing}
+            ></Checkbox>
+          </label>
+
           <LoaderButton
             block
             bsSize="large"

@@ -24,13 +24,13 @@ class GetMedia extends Component {
   validatecontent() {
     return this.state.content.length > 0;
   }*/
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
-  handleGetTwitte = async (event) => {
+  handleGetTwitte = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
     const { id } = this.state;
@@ -38,14 +38,14 @@ class GetMedia extends Component {
       .get("http://130.245.168.66/media/" + id, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
-      .then((result) => {
+      .then(result => {
         // alert(result.item);
         alert("get media");
         console.log("xxxxx", result.data.media);
         this.setState({ isLoading: false });
         this.setState({ data: result.data.media });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         console.log("fail");
         this.setState({ isLoading: false });
@@ -53,6 +53,7 @@ class GetMedia extends Component {
   };
   render() {
     const { data } = this.state;
+    console.log("length", this.state.data.length);
     return (
       <div className="Login">
         <form onSubmit={this.handleGetTwitte}>
@@ -76,12 +77,9 @@ class GetMedia extends Component {
           />
         </form>
         <div>
-          {this.state.data["id"] && this.state.data["id"].length > 0 ? (
+          {this.state.data != [] ? (
             <ul>
-              <li>id: {data["id"]}</li>
-              <li>username: {data["username"]}</li>
-              <li>media: {data["media"]}</li>
-              <li>isUse: {data["isUse"]}</li>
+              <li>media: {this.state.data["username"]}</li>
             </ul>
           ) : (
             <div />

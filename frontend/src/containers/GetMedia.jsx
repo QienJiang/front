@@ -39,7 +39,6 @@ class GetMedia extends Component {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {
-        // alert(result.item);
         alert("get media");
         console.log("xxxxx", result.data.media);
         this.setState({ isLoading: false });

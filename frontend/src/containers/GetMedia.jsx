@@ -80,9 +80,8 @@ class GetMedia extends Component {
             <ul>
               <li>id: {data["id"]}</li>
               <li>username: {data["username"]}</li>
-              <li>retweeted: {data["retweeted"]}</li>
-              <li>content: {data["content"]}</li>
-              <li>timestamp: {data["timestamp"]}</li>
+              <li>media: {data["media"]}</li>
+              <li>isUse: {data["isUse"]}</li>
             </ul>
           ) : (
             <div />

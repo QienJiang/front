@@ -93,8 +93,8 @@ class Signup extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Sign Up"
-            loadingText="Logging in…"
+            text="register"
+            loadingText="register in…"
           />
         </form>
       </div>

@@ -22,6 +22,7 @@ import GetUserPost from "./containers/GetUserPost";
 import Follow from "./containers/Follow";
 import GetUserFollowers from "./containers/GetUserFollowers";
 import GetUserFollowing from "./containers/GetUserFollowing";
+import GetMedia from "./containers/GetMedia";
 
 export default ({ childProps }) => (
   <Switch>
@@ -128,7 +129,12 @@ export default ({ childProps }) => (
       component={Verify}
       props={childProps}
     />
-
+    <AuthenticatedRoute
+      path="/media"
+      exact
+      component={GetMedia}
+      props={childProps}
+    />
     {/* Finally, catch all unmatched routes */}
     <Route component={NotFound} />
   </Switch>

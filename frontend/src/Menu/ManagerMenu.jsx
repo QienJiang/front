@@ -52,6 +52,9 @@ class ManagerMenu extends Component {
           >
             <ListItemText primary="Search" />
           </ListItem>
+          <ListItem button onClick={() => this.props.history.push("/media")}>
+            <ListItemText primary="Get Media" />
+          </ListItem>
         </List>
       </div>
     );

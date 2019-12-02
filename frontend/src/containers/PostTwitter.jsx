@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import axios from "axios";
+import Select from "react-select";
 import "./Login.css";
+
+const options = [
+  { value: "reply", label: "Reply" },
+  { value: "retweet", label: "Retweet" }
+];
 
 class PostTwitter extends Component {
   constructor(props) {
@@ -43,7 +49,7 @@ class PostTwitter extends Component {
     // }
     let data = JSON.stringify({
       content: content,
-      childType: childType,
+      childType: childType.value,
       parent: parent,
       media: media
     });
@@ -69,7 +75,14 @@ class PostTwitter extends Component {
       media: event.target.files
     });
   };
+  handleChangeOption = childType => {
+    this.setState({ childType }, () =>
+      console.log(`Option selected:`, this.state.childType)
+    );
+  };
+
   render() {
+    const { childType } = this.state;
     return (
       <div className="Login">
         <form onSubmit={this.handlePostTwitte}>
@@ -83,15 +96,13 @@ class PostTwitter extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="childType">
-            <ControlLabel>childType</ControlLabel>
-            <FormControl
-              autoFocus
-              type="text"
-              value={this.state.childType}
-              onChange={this.handleChange}
-            />{" "}
-          </FormGroup>
+          <ControlLabel>childType</ControlLabel>
+          <Select
+            value={this.state.childType}
+            onChange={this.handleChangeOption}
+            options={options}
+          />
+
           <FormGroup controlId="parent" bsSize="large">
             <ControlLabel>Parent</ControlLabel>
             <FormControl
@@ -128,3 +139,14 @@ class PostTwitter extends Component {
 }
 
 export default PostTwitter;
+{
+  /* <FormGroup controlId="childType">
+            <ControlLabel>childType</ControlLabel>
+            <FormControl
+              autoFocus
+              type="text"
+              value={this.state.childType}
+              onChange={this.handleChange}
+            />{" "}
+          </FormGroup> */
+}

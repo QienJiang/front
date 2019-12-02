@@ -129,7 +129,7 @@ export default ({ childProps }) => (
       component={Verify}
       props={childProps}
     />
-    <AuthenticatedRoute
+    <UnauthenticatedRoute
       path="/media"
       exact
       component={GetMedia}

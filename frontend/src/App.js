@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({ isAuthenticating: false });
   }
 
-  handleLogout = async event => {
+  handleLogout = async (event) => {
     event.preventDefault();
     this.setState({ isLoading: true });
     const { timestamp, limit, q, username, following } = this.state;
@@ -45,11 +45,11 @@ class App extends Component {
           "Content-Type": "application/json;charset=UTF-8"
         }
       })
-      .then(result => {
+      .then((result) => {
         this.userHasAuthenticated(false);
         this.props.history.push("/login");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         console.log("fail");
         alert("invalid user name or password");
@@ -57,18 +57,18 @@ class App extends Component {
       });
   };
 
-  userHasAuthenticated = authenticated => {
+  userHasAuthenticated = (authenticated) => {
     this.setState({ isAuthenticated: authenticated });
   };
-  saveRole = role => {
+  saveRole = (role) => {
     this.setState({ role: role });
     console.log("state role", this.state.role);
   };
-  saveEmail = email => {
+  saveEmail = (email) => {
     this.setState({ email: email });
     console.log("state email", this.state.email);
   };
-  saveSSN = ssn => {
+  saveSSN = (ssn) => {
     this.setState({ ssn: ssn });
     console.log("state ssn", this.state.ssn);
   };
@@ -120,6 +120,9 @@ class App extends Component {
                   </LinkContainer>
                   <LinkContainer to="/getuser">
                     <NavItem>Get User</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/media">
+                    <NavItem>Get Media</NavItem>
                   </LinkContainer>
                 </Fragment>
               )}

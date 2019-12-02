@@ -23,6 +23,7 @@ import Follow from "./containers/Follow";
 import GetUserFollowers from "./containers/GetUserFollowers";
 import GetUserFollowing from "./containers/GetUserFollowing";
 import GetMedia from "./containers/GetMedia";
+import AddMedia from "./containers/AddMedia";
 
 export default ({ childProps }) => (
   <Switch>
@@ -121,6 +122,12 @@ export default ({ childProps }) => (
       path="/follow"
       exact
       component={Follow}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/addmedia"
+      exact
+      component={AddMedia}
       props={childProps}
     />
     <UnauthenticatedRoute

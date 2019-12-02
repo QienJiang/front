@@ -92,6 +92,16 @@ class PostTwitter extends Component {
               onChange={this.handleChange}
             />{" "}
           </FormGroup>
+          <FormGroup controlId="parent" bsSize="large">
+            <ControlLabel>Parent</ControlLabel>
+            <FormControl
+              autoFocus
+              type="text"
+              value={this.state.parent}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+
           <ControlLabel>Add Media</ControlLabel>
           <input
             type="file"

@@ -24,6 +24,7 @@ import GetUserFollowers from "./containers/GetUserFollowers";
 import GetUserFollowing from "./containers/GetUserFollowing";
 import GetMedia from "./containers/GetMedia";
 import AddMedia from "./containers/AddMedia";
+import LikeUser from "./containers/LikeUser";
 
 export default ({ childProps }) => (
   <Switch>
@@ -140,6 +141,12 @@ export default ({ childProps }) => (
       path="/media"
       exact
       component={GetMedia}
+      props={childProps}
+    />
+    <AuthenticatedRoute
+      path="/likeItem"
+      exact
+      component={LikeUser}
       props={childProps}
     />
     {/* Finally, catch all unmatched routes */}

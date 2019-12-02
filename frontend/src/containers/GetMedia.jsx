@@ -8,20 +8,22 @@ class GetMedia extends Component {
     super(props);
     this.state = {
       loadList: [],
-      itemID: "",
-      content: "",
-      childType: "",
+      id: "",
+      username: "",
+      media: null,
+      isUse: "",
       isLoading: false,
       data: []
     };
   }
 
   validateForm() {
-    return this.state.itemID.length > 0;
+    return this.state.id.length > 0;
   }
+  /*
   validatecontent() {
     return this.state.content.length > 0;
-  }
+  }*/
   handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value
@@ -31,17 +33,17 @@ class GetMedia extends Component {
   handleGetTwitte = async (event) => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { itemID } = this.state;
+    const { id } = this.state;
     axios
-      .get("http://130.245.168.66/media/" + itemID, {
+      .get("http://130.245.168.66/media/" + id, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then((result) => {
         // alert(result.item);
-        alert("get item");
-        console.log("xxxxx", result.data.item);
+        alert("get media");
+        console.log("xxxxx", result.data.media);
         this.setState({ isLoading: false });
-        this.setState({ data: result.data.item });
+        this.setState({ data: result.data.media });
       })
       .catch((error) => {
         console.log(error);
@@ -54,12 +56,12 @@ class GetMedia extends Component {
     return (
       <div className="Login">
         <form onSubmit={this.handleGetTwitte}>
-          <FormGroup controlId="itemID" bsSize="large">
-            <ControlLabel>Get your twitter</ControlLabel>
+          <FormGroup controlId="id" bsSize="large">
+            <ControlLabel>Get Media</ControlLabel>
             <FormControl
               autoFocus
               type="text"
-              value={this.state.itemID}
+              value={this.state.id}
               onChange={this.handleChange}
             />
           </FormGroup>
@@ -69,8 +71,8 @@ class GetMedia extends Component {
             disabled={!this.validateForm()}
             type="submit"
             isLoading={this.state.isLoading}
-            text="Get twitter "
-            loadingText="Getting the twitter…"
+            text="Get Media"
+            loadingText="Getting the Media…"
           />
         </form>
         <div>

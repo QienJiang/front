@@ -28,7 +28,7 @@ class GetUser extends Component {
     this.setState({ isLoading: true });
     const { username } = this.state;
     axios
-      .get("http://130.245.169.40/user/" + username, {
+      .get("http://130.245.168.66/user/" + username, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {

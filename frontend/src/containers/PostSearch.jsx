@@ -55,7 +55,7 @@ class PostSearch extends Component {
     });
     axios.defaults.withCredentials = true;
     axios
-      .post("http://130.245.169.40/search", data, {
+      .post("http://130.245.168.66/search", data, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {

@@ -40,7 +40,7 @@ class Login extends Component {
     });
     axios.defaults.withCredentials = true;
     axios
-      .post("http://130.245.169.40/login", data, {
+      .post("http://130.245.168.66/login", data, {
         headers: {
           "Content-Type": "application/json;charset=UTF-8"
         }

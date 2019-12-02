@@ -13,7 +13,9 @@ class PostTwitter extends Component {
       content: "",
       childType: "",
       isLoading: false,
-      data: ""
+      data: "",
+      parent: "",
+      media: null
     };
   }
 
@@ -32,14 +34,22 @@ class PostTwitter extends Component {
   handlePostTwitte = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { content, childType } = this.state;
+
+    const { content, childType, parent, media } = this.state;
+    // let holder = new FormData();
+    // for (var x = 0; x < media.length; x++) {
+    //   holder.append("file", media[x]);
+    //   console.log("xxxx", media[x]);
+    // }
     let data = JSON.stringify({
       content: content,
-      childType: childType
+      childType: childType,
+      parent: parent,
+      media: media
     });
 
     axios
-      .post("http://130.245.169.40/additem", data, {
+      .post("http://130.245.168.66/additem", data, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {
@@ -54,7 +64,11 @@ class PostTwitter extends Component {
         this.setState({ isLoading: false });
       });
   };
-
+  onChangeHandler = event => {
+    this.setState({
+      media: event.target.files
+    });
+  };
   render() {
     return (
       <div className="Login">
@@ -78,6 +92,13 @@ class PostTwitter extends Component {
               onChange={this.handleChange}
             />{" "}
           </FormGroup>
+          <ControlLabel>Add Media</ControlLabel>
+          <input
+            type="file"
+            className="form-control"
+            multiple
+            onChange={this.onChangeHandler}
+          />
           <LoaderButton
             block
             bsSize="large"

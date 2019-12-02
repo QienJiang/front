@@ -22,28 +22,28 @@ class DeleteTwitter extends Component {
   validatecontent() {
     return this.state.content.length > 0;
   }
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
-  handleGetTwitte = async (event) => {
+  handleGetTwitte = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
     const { itemID } = this.state;
     axios
-      .delete("http://130.245.169.40/item/" + itemID, {
+      .delete("http://130.245.168.66/item/" + itemID, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
-      .then((result) => {
+      .then(result => {
         // alert(result.item);
         alert("delete item");
         console.log("xxxxx", result.data.item);
         this.setState({ isLoading: false });
         this.setState({ data: result.data.item });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         console.log("fail");
         this.setState({ isLoading: false });

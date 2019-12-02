@@ -29,7 +29,7 @@ class GetUserPost extends Component {
     const { username } = this.state;
 
     axios
-      .get("http://130.245.169.40/user/" + username + "/posts", {
+      .get("http://130.245.168.66/user/" + username + "/posts", {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {

@@ -34,7 +34,7 @@ class Follow extends Component {
       follow: follow
     });
     axios
-      .post("http://130.245.169.40/follow", data, {
+      .post("http://130.245.168.66/follow", data, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {

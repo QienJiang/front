@@ -29,7 +29,7 @@ class GetUserFollowing extends Component {
     const { username } = this.state;
 
     axios
-      .get("http://130.245.169.40/user/" + username + "/following", {
+      .get("http://130.245.168.66/user/" + username + "/following", {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {

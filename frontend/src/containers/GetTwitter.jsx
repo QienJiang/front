@@ -33,7 +33,7 @@ class GetTwitter extends Component {
     this.setState({ isLoading: true });
     const { itemID } = this.state;
     axios
-      .get("http://130.245.169.40/item/" + itemID, {
+      .get("http://130.245.168.66/item/" + itemID, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {

@@ -41,7 +41,7 @@ class Signup extends Component {
       username: username
     });
     axios
-      .post("http://130.245.169.40/adduser", data, {
+      .post("http://130.245.168.66/adduser", data, {
         headers: { "Content-Type": "application/json;charset=UTF-8" }
       })
       .then(result => {

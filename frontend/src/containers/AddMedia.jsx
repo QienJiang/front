@@ -12,10 +12,12 @@ class AddMedia extends Component {
       loadList: [],
       isLoading: false,
       data: "",
-      media: null
+      content: ""
     };
   }
-
+  validatecontent() {
+    return this.state.media != "" ? true : false;
+  }
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
@@ -26,9 +28,9 @@ class AddMedia extends Component {
     event.preventDefault();
     this.setState({ isLoading: true });
 
-    const { media } = this.state;
+    const { content } = this.state;
     let data = JSON.stringify({
-      media: media
+      content: content
     });
 
     axios

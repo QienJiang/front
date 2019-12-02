@@ -9,6 +9,12 @@ import {
 import LoaderButton from "../components/LoaderButton";
 import axios from "axios";
 import "./Login.css";
+import Select from "react-select";
+
+const options = [
+  { value: "time", label: "Time" },
+  { value: "interest", label: "Interest" }
+];
 
 class PostSearchA extends Component {
   constructor(props) {
@@ -21,7 +27,12 @@ class PostSearchA extends Component {
       username: "",
       following: true,
       isLoading: false,
-      data: []
+      data: [],
+
+      rank: options[1],
+      parent: "",
+      replies: true,
+      hasMedia: false
     };
   }
 
@@ -35,23 +46,51 @@ class PostSearchA extends Component {
   };
   handleFollowing = event => {
     console.log("value", this.state.following);
-
     this.setState({
       following: event.target.checked
     });
-
     console.log("value change to", this.state.following);
   };
+  handleReply = event => {
+    console.log("value", this.state.replies);
+    this.setState({
+      replies: event.target.checked
+    });
+    console.log("value change to", this.state.replies);
+  };
+
+  handleMedia = event => {
+    console.log("value", this.state.hasMedia);
+    this.setState({
+      hasMedia: event.target.checked
+    });
+    console.log("value change to", this.state.hasMedia);
+  };
+
   handlePostTwitte = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    const { timestamp, limit, q, username, following } = this.state;
+    const {
+      timestamp,
+      limit,
+      q,
+      username,
+      following,
+      rank,
+      replies,
+      parent,
+      hasMedia
+    } = this.state;
     let data = JSON.stringify({
       timestamp: timestamp,
       limit: limit,
       q: q,
       username: username,
-      following: following
+      following: following,
+      rank: rank.value,
+      parent: parent,
+      replies: replies,
+      hasMedia: hasMedia
     });
     axios.defaults.withCredentials = true;
     axios
@@ -87,9 +126,19 @@ class PostSearchA extends Component {
     return <ul>{listItems}</ul>;
   }
 
+  handleChangeOption = rank => {
+    this.setState({ rank }, () =>
+      console.log(`Option selected:`, this.state.rank)
+    );
+  };
+
   render() {
-    const { following } = this.state;
+    const { following, replies, rank, hasMedia } = this.state;
     console.log("render", following);
+    console.log("render replies", replies);
+    console.log("render rank", rank);
+    console.log("render hasMedia", hasMedia);
+
     return (
       <div className="Login">
         <form onSubmit={this.handlePostTwitte}>
@@ -139,6 +188,45 @@ class PostSearchA extends Component {
             ></Checkbox>
           </label>
 
+          <div>
+            <ControlLabel>rank</ControlLabel>
+            <Select
+              defaults="time"
+              value={this.state.rank}
+              onChange={this.handleChangeOption}
+              options={options}
+            />
+          </div>
+          <FormGroup controlId="parent">
+            <ControlLabel>parent</ControlLabel>
+            <FormControl
+              autoFocus
+              type="text"
+              value={this.state.parent}
+              onChange={this.handleChange}
+            />{" "}
+          </FormGroup>
+          <div>
+            <label>
+              replies
+              <Checkbox
+                name="replies"
+                checked={this.state.replies}
+                onChange={this.handleReply}
+              ></Checkbox>
+            </label>
+          </div>
+
+          <div>
+            <label>
+              hasMedia
+              <Checkbox
+                name=" hasMedia"
+                checked={this.state.hasMedia}
+                onChange={this.handleMedia}
+              ></Checkbox>
+            </label>
+          </div>
           <LoaderButton
             block
             bsSize="large"

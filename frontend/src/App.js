@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({ isAuthenticating: false });
   }
 
-  handleLogout = async (event) => {
+  handleLogout = async event => {
     event.preventDefault();
     this.setState({ isLoading: true });
     const { timestamp, limit, q, username, following } = this.state;
@@ -40,16 +40,16 @@ class App extends Component {
 
     axios.defaults.withCredentials = true;
     axios
-      .post("http://130.245.169.40/logout", data, {
+      .post("http://130.245.168.66/logout", data, {
         headers: {
           "Content-Type": "application/json;charset=UTF-8"
         }
       })
-      .then((result) => {
+      .then(result => {
         this.userHasAuthenticated(false);
         this.props.history.push("/login");
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
         console.log("fail");
         alert("invalid user name or password");
@@ -57,18 +57,18 @@ class App extends Component {
       });
   };
 
-  userHasAuthenticated = (authenticated) => {
+  userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
   };
-  saveRole = (role) => {
+  saveRole = role => {
     this.setState({ role: role });
     console.log("state role", this.state.role);
   };
-  saveEmail = (email) => {
+  saveEmail = email => {
     this.setState({ email: email });
     console.log("state email", this.state.email);
   };
-  saveSSN = (ssn) => {
+  saveSSN = ssn => {
     this.setState({ ssn: ssn });
     console.log("state ssn", this.state.ssn);
   };
